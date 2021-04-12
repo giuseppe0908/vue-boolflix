@@ -15,6 +15,10 @@ nav{
   height: 100px;
   background-color: black;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 nav #boolfix{
   text-transform: uppercase;
@@ -30,6 +34,7 @@ main{
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 100px;
 }
 
 
