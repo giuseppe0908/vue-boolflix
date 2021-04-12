@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./assets/master.css">
+    <title>boolfix</title>
+  </head>
+  <body>
+
+    <div id="root">
+
+      <nav>
+        <p id="boolfix">boolfix</p>
+        <input type="text" name="" value="" placeholder="insersci" v-model="search" @keyup.enter="add">
+      </nav>
+      <main>
+
+        <div class="card" v-for="film in films">
+        <div class="card-inner">
+          <div class="card-cover">
+            <img :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}` "alt="mha">
+          </div>
+          <div class="card-info">
+            <span class="title">{{film.title}}</span>
+            <span class="title-origin">{{film.original_title}}</span>
+            <span class="language">
+              <img v-if="film.original_language == 'en' " src="https://www.countryflags.io/us/flat/64.png" alt="ciao">
+              <img v-else :src=`https://www.countryflags.io/${film.original_language}/flat/64.png` alt="cis">
+
+            </span>
+            <span class="avarange">{{film.vote_average}}</span>
+          </div>
+        </div>
+        </div>
+
+      </main>
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./assets/main.js" charset="utf-8"></script>
+  </body>
+</html>
