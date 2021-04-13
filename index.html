@@ -13,11 +13,15 @@
 
       <nav>
         <p id="boolfix">boolfix</p>
+        <select id="lista" v-model="genere" >
+    		  <option value="">All</option>
+    		  <option v-for="genere in generi" :value="genere.id">{{genere.name}}</option>
+        </select>
         <input type="text" name="" value="" placeholder="insersci" v-model="search" @keyup.enter="add">
       </nav>
       <main>
 
-        <div class="card" v-for="film in films">
+        <div class="card" v-for="film in films" v-if="genere == film.genre_ids || genere == '' ">
         <div class="card-inner">
           <div class="card-cover">
             <img v-if="(film.poster_path)" :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}` "alt="mha">

@@ -8,26 +8,28 @@ var app = new Vue({
     uri:"https://api.themoviedb.org/3",
     api_key:"a2391ef42653febeddc812031ec86499",
     language:"it",
+    genere:"",
+    generi: [],
   },
 
   methods:{
     add:function(){
       axios.get(`${this.uri}/search/movie?api_key=${this.api_key}&query=${this.search}&language=${this.language}`)
            .then((response) =>{
-             const results = response.data.results;
+             const results = response.data.results ;
              // this.films =this.films.concat(results);
-             //anche questa this.films = response.data.results;
-             // console.log(this.films);
+
              this.films = [...this.films, ...results ];
              console.log(this.films);
            });
+
       axios.get(`${this.uri}/search/tv?api_key=${this.api_key}&query=${this.search}&language=${this.language}`)
                 .then((response) =>{
                   const results = response.data.results;
                   // this.films = this.films.concat(results)  concateno flm con serie tv;
-                  // console.log(this.films); this.serietv = response.data.results;
                   this.films = [...this.films, ...results ];
                 });
+                this.films=[];
     },
     get_title: function(obj){
        if (obj.title) {
@@ -45,9 +47,22 @@ var app = new Vue({
     },
     vote:function(voto){
       return Math.round(voto / 2)
-    }
+    },
+    // genereoption: function () {
+    //
+    //
+    // }
 
-  }
+  },
+  mounted(){
+    axios.get(`${this.uri}/genre/tv/list?api_key=${this.api_key}`)
 
+         .then((response) =>{
+           // console.log(response);
+          this.generi = response.data.genres;
+          console.log(this.generi);
+
+         });
+  },
 
 });
