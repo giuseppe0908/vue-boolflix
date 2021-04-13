@@ -94,4 +94,13 @@ main{
   justify-content: center;
 }
 
+.card-info .stelle{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.colorato{
+  color: yellow;
+}
+
 /* FINE CARD */
