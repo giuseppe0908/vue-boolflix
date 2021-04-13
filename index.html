@@ -13,13 +13,32 @@
 
       <nav>
         <p id="boolfix">boolfix</p>
-        <select id="lista" v-model="genere" >
-    		  <option value="">All</option>
-    		  <option v-for="gen in generi" :value="gen.id">{{gen.name}}</option>
-        </select>
-        <input type="text" name="" value="" placeholder="insersci" v-model="search" @keyup.enter="add">
+        <div class="flex-end">
+          <input v-if="(films != 0)" type="text" name="" value="" placeholder="Cerca" v-model="search" @keyup.enter="add">
+          <select id="lista" v-if="(films != 0)" v-model="genere" >
+      		  <option value="">All</option>
+      		  <option v-for="gen in generi" :value="gen.id">{{gen.name}}</option>
+          </select>
+        </div>
+
       </nav>
       <main>
+        
+        <div class="anteprima" v-if="(films == 0)">
+          <div class="container_ant">
+            <div class="titolo">
+              <h1>BOOLFIX</h1>
+            </div>
+            <div class="titolo_second">
+              <h2>Guarda le tue serie tv e film preferiti in modo semplice e veloce.</h2>
+              <h2>Boolfix ti permette anche di vedere le recensioni.</h2>
+              <input type="text" name="" value="" placeholder="Cerca " v-model="search" @keyup.enter="add">
+            </div>
+
+          </div>
+
+
+        </div>
 
         <div class="card" @mouseenter="cast(film.id) "  @mouseleave="actors =[]"  v-for="film in films" v-if="film.genre_ids.includes(genere) || genere == '' ">
         <div class="card-inner">
@@ -31,7 +50,10 @@
             <span class="title">Titolo:{{ get_title(film) }}</span>
             <span v-if="film.title != film.original_title || film.name != film.original_name" class="title-origin">Titolo originale:{{ get_original_title(film) }}</span>
             <!-- <span class="overview"></span> -->
-            <span v-for="actor in actors">{{actor}}</span>
+            <ul class="cast">Cast:
+              <li v-for="actor in actors">{{actor}}</li>
+            </ul>
+            <!-- <span v-for="actor in actors">cast:{{actor}}</span> -->
             <span class="language">
               <img v-if="film.original_language == 'en' " src="https://www.countryflags.io/us/flat/64.png" alt="ciao">
               <img v-else :src=`https://www.countryflags.io/${film.original_language}/flat/64.png` alt="cis">
