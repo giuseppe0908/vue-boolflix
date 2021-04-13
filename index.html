@@ -15,21 +15,23 @@
         <p id="boolfix">boolfix</p>
         <select id="lista" v-model="genere" >
     		  <option value="">All</option>
-    		  <option v-for="genere in generi" :value="genere.id">{{genere.name}}</option>
+    		  <option v-for="gen in generi" :value="gen.id">{{gen.name}}</option>
         </select>
         <input type="text" name="" value="" placeholder="insersci" v-model="search" @keyup.enter="add">
       </nav>
       <main>
 
-        <div class="card" v-for="film in films" v-if="genere == film.genre_ids || genere == '' ">
+        <div class="card" @mouseenter="cast(film.id) "  @mouseleave="actors =[]"  v-for="film in films" v-if="film.genre_ids.includes(genere) || genere == '' ">
         <div class="card-inner">
           <div class="card-cover">
             <img v-if="(film.poster_path)" :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}` "alt="mha">
             <img v-else src="https://www.santoemma.com/site/santoemma_webprofessional_it/myapp/webbusiness/images/img-non-disponibile.png" alt="">
           </div>
           <div class="card-info">
-            <span class="title">{{ get_title(film) }}</span>
-            <span v-if="film.title != film.original_title || film.name != film.original_name" class="title-origin">{{ get_original_title(film) }}</span>
+            <span class="title">Titolo:{{ get_title(film) }}</span>
+            <span v-if="film.title != film.original_title || film.name != film.original_name" class="title-origin">Titolo originale:{{ get_original_title(film) }}</span>
+            <!-- <span class="overview"></span> -->
+            <span v-for="actor in actors">{{actor}}</span>
             <span class="language">
               <img v-if="film.original_language == 'en' " src="https://www.countryflags.io/us/flat/64.png" alt="ciao">
               <img v-else :src=`https://www.countryflags.io/${film.original_language}/flat/64.png` alt="cis">
@@ -37,7 +39,7 @@
             </span>
             <div class="stelle">
               <span class="avarange" v-if="(film.vote_average)">
-                <i v-for="stelle in vote(film.vote_average)" class="fas fa-star colorato"></i>
+                Voto:<i v-for="stelle in vote(film.vote_average)" class="fas fa-star colorato"></i>
                 <i v-for="stelle in (5 - vote(film.vote_average))" class="far fa-star"></i>
               </span>
 
@@ -46,26 +48,6 @@
         </div>
         </div>
 
-
-
-        <!-- SERIE TV  v-for="stelle in parseInt(film.vote_average) "  <i class="fas fa-star"></i>    {{film.vote_average}}-->
-        <!-- <div class="card" v-for="serie in serietv">
-        <div class="card-inner">
-          <div class="card-cover">
-            <img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}` "alt="mha">
-          </div>
-          <div class="card-info">
-            <span class="title">{{serie.name}}</span>
-            <span v-if="serie.name != serie.original_name" class="title-origin">{{serie.original_name}}</span>
-            <span class="language">
-              <img v-if="serie.original_language == 'en' " src="https://www.countryflags.io/us/flat/64.png" alt="ciao">
-              <img v-else :src=`https://www.countryflags.io/${serie.original_language}/flat/64.png` alt="cis">
-
-            </span>
-            <span class="avarange">{{serie.vote_average}}</span>
-          </div>
-        </div>
-        </div> -->
 
       </main>
 

@@ -10,9 +10,22 @@ var app = new Vue({
     language:"it",
     genere:"",
     generi: [],
+    actors:[],
   },
 
   methods:{
+    cast:function(id){
+      axios.get(`${this.uri}/movie/${id}/credits?api_key=${this.api_key}`)
+           .then((response) =>{
+             const results = response.data.cast ;
+                console.log(results);
+                for (var i = 0; i < 5; i++) {
+                  let name= results[i].name;
+                    this.actors.push(name);
+                }
+           });
+
+    },
     add:function(){
       axios.get(`${this.uri}/search/movie?api_key=${this.api_key}&query=${this.search}&language=${this.language}`)
            .then((response) =>{
@@ -48,14 +61,10 @@ var app = new Vue({
     vote:function(voto){
       return Math.round(voto / 2)
     },
-    // genereoption: function () {
-    //
-    //
-    // }
 
   },
   mounted(){
-    axios.get(`${this.uri}/genre/tv/list?api_key=${this.api_key}`)
+    axios.get(`${this.uri}/genre/movie/list?api_key=${this.api_key}`)
 
          .then((response) =>{
            // console.log(response);
