@@ -18,9 +18,8 @@ var app = new Vue({
       axios.get(`${this.uri}/movie/${id}/credits?api_key=${this.api_key}`)
            .then((response) =>{
              const results = response.data.cast ;
-                console.log(results);
                 for (var i = 0; i < 5; i++) {
-                  let name= results[i].name;
+                  let name = results[i].name;
                     this.actors.push(name);
                 }
            });
@@ -30,10 +29,9 @@ var app = new Vue({
       axios.get(`${this.uri}/search/movie?api_key=${this.api_key}&query=${this.search}&language=${this.language}`)
            .then((response) =>{
              const results = response.data.results ;
-             // this.films =this.films.concat(results);
-
+             // this.films =this.films.concat(results) concateno flm con serie tv;
              this.films = [...this.films, ...results ];
-             console.log(this.films);
+
            });
 
       axios.get(`${this.uri}/search/tv?api_key=${this.api_key}&query=${this.search}&language=${this.language}`)
@@ -44,6 +42,7 @@ var app = new Vue({
                 });
                 this.films=[];
     },
+
     get_title: function(obj){
        if (obj.title) {
           return obj.title;
@@ -51,6 +50,7 @@ var app = new Vue({
          return obj.name;
        }
     },
+
     get_original_title:function(obj){
       if (obj.original_title) {
          return obj.original_title;
@@ -58,6 +58,7 @@ var app = new Vue({
         return obj.original_name;
       }
     },
+
     vote:function(voto){
       return Math.round(voto / 2)
     },
@@ -65,12 +66,8 @@ var app = new Vue({
   },
   mounted(){
     axios.get(`${this.uri}/genre/movie/list?api_key=${this.api_key}`)
-
          .then((response) =>{
-           // console.log(response);
           this.generi = response.data.genres;
-          console.log(this.generi);
-
          });
   },
 

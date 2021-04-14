@@ -6,14 +6,9 @@
 body{
   background-color: black;
   background-image: url("sfondo_netflix.jpg");
-  /* background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/92bb3a0b-7e91-40a0-b27b-f2c3ac9ef6e4/427f698c-54be-4aba-bf62-d8d0d0a83510/IT-it-20210322-popsignuptwoweeks-perspective_alpha_website_small.jpg"); */
   height: 100%;
 }
 
-#root{
-  /* width: 90%;
-  margin: 0 auto; https://assets.nflxext.com/ffe/siteui/vlv3/92bb3a0b-7e91-40a0-b27b-f2c3ac9ef6e4/427f698c-54be-4aba-bf62-d8d0d0a83510/IT-it-20210322-popsignuptwoweeks-perspective_alpha_website_small.jpg    */
-}
 .anteprima{
   height: 100vh;
   width: 100%;
@@ -53,7 +48,6 @@ nav{
   justify-content: space-between;
   height: 80px;
   background-image: url("sfondo_netflix.jpg");
-  /* background-color: black; */
   align-items: center;
   position: fixed;
   top: 0;
@@ -67,11 +61,13 @@ nav #boolfix{
   margin: 0 20px;
   font-size: 30px;
 }
+
 nav .flex-end{
   display: flex;
   justify-content: flex-end;
   margin-right: 19px;
 }
+
 nav input{
   height: 20px;
   margin: 0 20px;
@@ -84,6 +80,7 @@ nav #lista, input{
   padding-left: 10px;
   background-image: url("sfondo_netflix.jpg");
 }
+
 main{
   display: flex;
   flex-wrap: wrap;
@@ -93,7 +90,6 @@ main{
 /* CARD */
 .card {
   background-color: transparent;
-  /* width: 300px; */
   height: 350px;
   perspective: 1000px;
   padding-top: 20px;
@@ -128,6 +124,7 @@ main{
 .card-cover {
   color: black;
 }
+
 .card-cover img{
   height: 100%;
   width: 100%;
@@ -143,6 +140,7 @@ main{
   text-align: left;
   padding-left: 10px;
 }
+
 .card-info .cast > li{
   display: block;
 }
@@ -152,3 +150,47 @@ main{
 }
 
 /* FINE CARD */
+
+@media screen and ( max-width: 1200px){
+  .card{
+    width: calc(100%/4 - 40px);
+  }
+
+}
+@media screen and ( max-width: 950px){
+
+ .titolo > h1{
+    font-size: 100px;
+  }
+  .titolo_second h2 {
+    font-size: 23px;
+  }
+  .card{
+    width: calc(100%/3 - 40px);
+  }
+}
+
+@media screen and ( max-width: 768px){
+  .container_ant{
+    margin-left: 20px;
+  }
+  .titolo > h1{
+     font-size: 50px;
+   }
+   .titolo_second h2 {
+     font-size: 25px;
+   }
+  .card{
+    width: calc(100%/2 - 40px);
+  }
+}
+
+@media screen and ( max-width: 500px){
+  nav #lista, input{
+    width: 65px;
+  }
+
+  .card{
+    width: calc(100%/1 - 40px);
+  }
+}
