@@ -55,8 +55,9 @@
               <img v-else :src=`https://www.countryflags.io/${film.original_language}/flat/64.png` alt="bandiera non disponibile">
             </span>
             <div class="stelle">
-              <span class="avarange" v-if="(film.vote_average)">
-                Voto:<i v-for="stelle in vote(film.vote_average)" class="fas fa-star colorato"></i><i v-for="stelle in (5 - vote(film.vote_average))" class="far fa-star"></i>
+              <span class="avarange" v-if="(film.vote_average)"
+               v-html="votes(film.vote_average)">
+                <!-- Voto:<i v-for="stelle in vote(film.vote_average)" class="fas fa-star colorato"></i><i v-for="stelle in (5 - vote(film.vote_average))" class="far fa-star"></i> -->
               </span>
             </div>
           </div>

@@ -59,8 +59,17 @@ var app = new Vue({
       }
     },
 
-    vote:function(voto){
-      return Math.round(voto / 2)
+    votes:function(vote){
+      let stars = '';
+      for (var i = 1; i <= 5; i++){
+         if (i <= Math.ceil(vote/2)) {
+           stars += '<i class="fas fa-star colorato"></i>';
+
+        }else {
+           stars += '<i class="far fa-star"></i>';
+        }
+      }
+      return stars; 
     },
 
   },
